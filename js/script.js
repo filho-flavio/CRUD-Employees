@@ -2,6 +2,15 @@ function toggleFormVisibility() {
   const divAdd = document.querySelector("#div-add");
   divAdd.classList.toggle("hidden");
   divAdd.classList.toggle("content");
+
+  let btAddEmployee = document.querySelector("#addEmployee");
+  if (divAdd.classList.contains("content")) {
+    btAddEmployee.disabled = true;
+  } else {
+    btAddEmployee.disabled = false;
+  }
+
+  clearDisplay();
 }
 
 document

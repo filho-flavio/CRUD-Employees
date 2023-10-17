@@ -13,12 +13,16 @@
 
 <body>
     <div class="header">
-        <p id="addEmployee">+ Add Employee</p>
+        <div class="box-header">
+            <button id="addEmployee">+ Add Employee</button>
+            <h1>Employee Table</h1>
+        </div>
     </div>
     <div class="box">
         <span>
-            <label for="inShow">Show<input type="number" name="inShow" id="inShow" min="10" max="20"
-                    value="10">entries</label>
+            <label for="inShow">Show
+                <input type="number" name="inShow" id="inShow" min="10" max="20" value="10">
+                entries</label>
         </span>
         <span>
             <label for="inSearch">Search:</label>
@@ -42,7 +46,7 @@
                 <td>Thief</td>
                 <td>Mystic Falls</td>
                 <td>520</td>
-                <td>1492</td>
+                <td>16/10/1492</td>
                 <td>500600</td>
                 <td>$ 2000</td>
                 <td class="btActions"><button class="btEdit">Edit</button><button class="btDelete">Delete</button></td>
@@ -86,7 +90,7 @@
 
                 <p>
                     <label for="inTelephone">Phone number: </label>
-                    <input type="tel" id="inTelephone">
+                    <input type="text" id="inTelephone">
                 </p>
 
                 <p>
@@ -94,7 +98,7 @@
                     <input type="text" id="inSalary">
                 </p>
 
-                <button id="btSubmit" type="submit">Submit</button>
+                <button id="btSubmit" type="submit">Add</button>
             </div>
         </div>
     </div>
