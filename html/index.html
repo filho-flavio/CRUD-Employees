@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/style/style-employee.css">
+    <script src="/js/script.js" defer></script>
+    <title>Employee Table</title>
+</head>
+
+<body>
+    <div class="header">
+        <p id="addEmployee">+ Add Employee</p>
+    </div>
+    <div class="box">
+        <span>
+            <label for="inShow">Show<input type="number" name="inShow" id="inShow" min="10" max="20"
+                    value="10">entries</label>
+        </span>
+        <span>
+            <label for="inSearch">Search:</label>
+            <input type="text" id="inSearch">
+        </span>
+    </div>
+    <div class="container">
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Phone Number</th>
+                <th>Salary</th>
+                <th id="actions">Actions</th>
+            </tr>
+            <tr>
+                <td>Katherine Petrova</td>
+                <td>Thief</td>
+                <td>Mystic Falls</td>
+                <td>520</td>
+                <td>1492</td>
+                <td>500600</td>
+                <td>$ 2000</td>
+                <td class="btActions"><button class="btEdit">Edit</button><button class="btDelete">Delete</button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="container-employee">
+        <div class="hidden" id="div-add">
+
+            <img src="/img/close.png" id="close">
+            <h3>Add new employee</h3>
+
+            <div class="form">
+                <p>
+                    <label for="inName">Name: </label>
+                    <input type="text" id="inName" required>
+                </p>
+
+                Position:
+                <select id="inPosition">
+                    <option selected disabled hidden>Choose...</option>
+                    <option value="Developer">Developer</option>
+                    <option value="Manager">Manager</option>
+                    <option value="UI-UX">UI-UX</option>
+                </select>
+
+                <p>
+                    <label for="inOffice">Office:</label>
+                    <input type="text" id="inOffice">
+                </p>
+
+                <p>
+                    <label for="inAge">Age:</label>
+                    <input type="number" min="18" max="70" step="1" id="inAge" />
+                </p>
+
+                <p>
+                    <label for="inStartDate">Start Date:</label>
+                    <input type="date" id="inStartDate">
+                </p>
+
+                <p>
+                    <label for="inTelephone">Phone number: </label>
+                    <input type="tel" id="inTelephone">
+                </p>
+
+                <p>
+                    <label for="inSalary">Salary:</label>
+                    <input type="text" id="inSalary">
+                </p>
+
+                <button id="btSubmit" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
