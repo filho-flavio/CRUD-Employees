@@ -25,10 +25,6 @@
     max-width: 100%;
 }
 
-select {
-    width: 80px;
-}
-
 #btSubmit {
     color: #fff;
     border: none;
@@ -51,7 +47,8 @@ select {
 
 #close {
     width: 20px;
-    margin-left: 430px;
+    margin-left: 480px;
+    margin-top: 20px;
     cursor: pointer;
 }
 
@@ -59,6 +56,8 @@ select {
     width: 250px;
     height: 27px;
     border-radius: 0.5em;
+    font-size: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #inAge,
@@ -71,10 +70,28 @@ select {
 
 #addEmployee {
     width: 200px;
-    border: none;
+    height: 35px;
     background: none;
 }
 
 #addEmployee:active {
     color: #444242;
+}
+
+h3 {
+    font-size: 1.4em;
+    text-align: center;
+    color: #fff;
+}
+
+label {
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.header-form {
+    background: linear-gradient(0deg, rgba(61, 64, 64, 1) 0%, rgba(80, 88, 92, 1) 100%);
+    width: 530px;
+    margin-top: -30px;
+    border-radius: 1em 1em 0 0;
 }

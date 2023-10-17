@@ -65,6 +65,7 @@ function addEmployee(data) {
   actionsCell.className = "btActions";
 
   clearDisplay();
+  document.querySelector("#div-add").classList.toggle("hidden");
 }
 
 function clearDisplay() {
