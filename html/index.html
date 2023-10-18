@@ -8,30 +8,31 @@
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/style-employee.css">
     <script src="/js/script.js" defer></script>
-    <script src="/js/update.js" defer></script>
     <title>Employee Table</title>
 </head>
 
 <body>
-    <div class="header">
-        <div class="box-header">
-            <button id="addEmployee">+ Add Employee</button>
-            <h1>Employee Table</h1>
+    <header>
+        <div class="header">
+            <div class="box-header">
+                <button id="addEmployee">+ Add Employee</button>
+                <h1>Employee Table</h1>
+            </div>
         </div>
-    </div>
-    <div class="box">
-        <span>
-            <label for="inShow">Show
-                <input type="number" name="inShow" id="inShow" min="10" max="20" value="10">
-                entries</label>
-        </span>
-        <span>
-            <label for="inSearch">Search:</label>
-            <input type="text" id="inSearch">
-        </span>
-    </div>
+        <div class="box">
+            <span>
+                <label for="inShow">Show
+                    <input type="number" name="inShow" id="inShow" min="10" max="20" value="10">
+                    entries</label>
+            </span>
+            <span>
+                <label for="inSearch">Search:</label>
+                <input type="text" id="inSearch">
+            </span>
+        </div>
+    </header>
     <div class="container">
-        <table border="1">
+        <table border="1.5">
             <tr>
                 <th>Name</th>
                 <th>Position</th>
@@ -56,7 +57,7 @@
     </div>
     <div class="container-employee">
         <div class="hidden" id="div-add">
-            
+
             <div class="header-form">
                 <img src="/img/close.png" id="close">
                 <h3>Add new employee</h3>

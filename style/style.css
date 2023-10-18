@@ -6,7 +6,6 @@ body {
     background-color: #f0f0f0;
     font-size: 18px;
     height: 100vh;
-    overflow: hidden;
     margin: auto;
 }
 
@@ -29,7 +28,7 @@ h1 {
 .box-header {
     display: flex;
     justify-content: space-between;
-    width: 950px;
+    width: 900px;
     align-items: center;
 }
 
