@@ -69,22 +69,19 @@ function createEmployee(employee) {
 
   localStorage.setItem("dbClient", JSON.stringify(parsedList));
 
-  clearDisplay();
   toggleFormVisibility();
 }
 
 function readEmployee() {
   let data = JSON.parse(localStorage.getItem("dbClient"));
-  //console.log(data);
 
   data.forEach((employee) => {
     let table = document.querySelector("table");
     const row = table.insertRow();
 
-    // Você precisa percorrer as propriedades do objeto `employee`
     for (let key in employee) {
       const cell = row.insertCell();
-      cell.textContent = employee[key]; // Use a chave (`key`) para acessar o valor correto no objeto `employee`
+      cell.textContent = employee[key];
     }
 
     const actionsCell = row.insertCell();
@@ -122,16 +119,6 @@ function updateEmployee(index) {
 }
 
 function fillForm(employee) {
-  let content = {
-    inName: document.querySelector("#inName"),
-    inPosition: document.querySelector("#inPosition"),
-    inOffice: document.querySelector("#inOffice"),
-    inAge: document.querySelector("#inAge"),
-    inStartDate: document.querySelector("#inStartDate"),
-    inTelephone: document.querySelector("#inTelephone"),
-    inSalary: document.querySelector("#inSalary"),
-  };
-
   content.inName.value = employee.name;
   content.inPosition.value = employee.position;
   content.inOffice.value = employee.office;
@@ -153,4 +140,26 @@ function formVisibility() {
   } else {
     btEdit.disabled = false;
   }
+
+  document.querySelector("h3").textContent = "Update Employee";
+  let btSubmit = document.querySelector("#btSubmit");
+  btSubmit.textContent = "Save";
+  btSubmit.id = "btUpdate";
+
+  let btUpdate = document.querySelector("#btUpdate");
+  btUpdate.addEventListener("click", (index) => {
+    saveChanges(index);
+  });
+}
+
+function saveChanges(index) {}
+
+let btDelete = document.querySelectorAll(".btDelete");
+btDelete.forEach((bt) => {
+  bt.addEventListener("click", () => deleteEmployee(bt.index));
+});
+
+function deleteEmployee(index) {
+  let table = document.querySelector("table");
+  table.removeChild(index);
 }
