@@ -121,6 +121,12 @@ button {
     background-color: #c91313;
 }
 
+.highlight{
+    border: 2px solid #c91313;
+    background-color: #807979; /* Ou a cor que desejar */
+    transition: background-color 0.5s;
+}
+
 @media screen and (min-width: 300px) {
     h1 {
         margin-left: 0px;

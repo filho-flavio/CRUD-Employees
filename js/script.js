@@ -5,6 +5,7 @@ function toggleFormVisibility() {
 
   let btAddEmployee = document.querySelector("#addEmployee");
   if (divAdd.classList.contains("content")) {
+    document.querySelector("h3").textContent = "Add new employee";
     btAddEmployee.disabled = true;
   } else {
     btAddEmployee.disabled = false;
@@ -111,55 +112,66 @@ function updateEmployee(index) {
   let parsedList = storedList ? JSON.parse(storedList) : [];
   let selectedEmployee;
 
+  const fillForm = (employee) => {
+    content.inName.value = employee.name;
+    content.inPosition.value = employee.position;
+    content.inOffice.value = employee.office;
+    content.inAge.value = employee.age;
+    content.inStartDate.value = employee.startDate;
+    content.inTelephone.value = employee.telephone;
+    content.inSalary.value = employee.salary;
+
+    formVisibility(employee);
+  };
+
   if (index >= 0 && index < parsedList.length) {
     selectedEmployee = parsedList[index];
+    fillForm(selectedEmployee);
   }
-
-  fillForm(selectedEmployee);
 }
 
-function fillForm(employee) {
-  content.inName.value = employee.name;
-  content.inPosition.value = employee.position;
-  content.inOffice.value = employee.office;
-  content.inAge.value = employee.age;
-  content.inStartDate.value = employee.startDate;
-  content.inTelephone.value = employee.telephone;
-  content.inSalary.value = employee.salary;
-
-  formVisibility();
-}
-
-function formVisibility() {
+function formVisibility(employee) {
   const divAdd = document.querySelector("#div-add");
   divAdd.classList.toggle("hidden");
   divAdd.classList.toggle("content");
 
   if (divAdd.classList.contains("content")) {
     btEdit.disabled = true;
+    document.querySelector("h3").textContent = "Update Employee";
+    let btSubmit = document.querySelector("#btSubmit");
+    btSubmit.id = "btUpdate";
+    let btUpdate = document.querySelector("#btUpdate");
+    btUpdate.addEventListener("click", (index) => {
+      saveChanges(index, employee);
+    });
   } else {
     btEdit.disabled = false;
   }
-
-  document.querySelector("h3").textContent = "Update Employee";
-  let btSubmit = document.querySelector("#btSubmit");
-  btSubmit.textContent = "Save";
-  btSubmit.id = "btUpdate";
-
-  let btUpdate = document.querySelector("#btUpdate");
-  btUpdate.addEventListener("click", (index) => {
-    saveChanges(index);
-  });
 }
 
-function saveChanges(index) {}
-
-let btDelete = document.querySelectorAll(".btDelete");
-btDelete.forEach((bt) => {
-  bt.addEventListener("click", () => deleteEmployee(bt.index));
-});
+const saveChanges = (index, employee) => {
+  localStorage.setItem("dbClient", JSON.stringify(parsedList));
+};
 
 function deleteEmployee(index) {
-  let table = document.querySelector("table");
-  table.removeChild(index);
+  let storedList = localStorage.getItem("dbClient");
+  let parsedList = storedList ? JSON.parse(storedList) : [];
+
+  if (index >= 0 && index < parsedList.length) {
+    let employeeName = parsedList[index].name;
+
+    if (confirm(`Are you sure you want to delete ${employeeName}?`)) {
+      let table = document.querySelector("tbody");
+      let tr = document.querySelectorAll("tr")[index];
+      table.removeChild(tr);
+
+      parsedList.splice(index, 1);
+      localStorage.setItem("dbClient", JSON.stringify(parsedList));
+    }
+  }
 }
+
+let btDelete = document.querySelectorAll(".btDelete");
+btDelete.forEach((bt, index) => {
+  bt.addEventListener("click", () => deleteEmployee(index));
+});
