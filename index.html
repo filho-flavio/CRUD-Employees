@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="icon" href="/img/logo.png">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/style-employee.css">
-    <script src="/js/script.js" defer></script>
+    <script src="script.js" defer></script>
     <title>Employee Table</title>
 </head>
 
@@ -16,7 +16,7 @@
     <header>
         <div class="header">
             <div class="box-header">
-                <button id="addEmployee">+ Add Employee</button>
+                <button id="btnCreate">+ Add Employee</button>
                 <h1>Employee Table</h1>
             </div>
         </div>
@@ -47,10 +47,10 @@
         </table>
     </div>
     <div class="container-employee">
-        <div class="hidden" id="div-add">
+        <div class="modalHidden" id="divModal">
 
             <div class="header-form">
-                <img src="/img/close.png" id="close">
+                <img src="/img/close.png" id="btnCloseModal">
                 <h3></h3>
             </div>
 
@@ -93,7 +93,7 @@
                     <input type="text" id="inSalary">
                 </p>
 
-                <button id="btSubmit" type="submit">Save</button>
+               
             </div>
         </div>
     </div>

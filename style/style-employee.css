@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.content {
+.modalOpen {
     border: 1px solid #000;
     width: 530px;
     height: 550px;
@@ -41,11 +41,11 @@
     background-color: #1164b1;
 }
 
-.hidden {
+.modalHidden {
     display: none;
 }
 
-#close {
+#btnCloseModal {
     width: 20px;
     margin-left: 480px;
     margin-top: 20px;
@@ -68,13 +68,13 @@
     border-radius: 0.5em;
 }
 
-#addEmployee {
+#btnCreate {
     width: 200px;
     height: 35px;
     background: none;
 }
 
-#addEmployee:active {
+#btnCreate:active {
     color: #444242;
 }
 
