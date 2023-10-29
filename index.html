@@ -20,83 +20,85 @@
                 <h1>Employee Table</h1>
             </div>
         </div>
-        <div class="box">
-            <span>
+        <nav class="box">
+            <div>
                 <label for="inShow">Show
                     <input type="number" name="inShow" id="inShow" min="10" max="20" value="10">
-                    entries</label>
-            </span>
-            <span>
+                    entries
+                </label>
+            </div>
+            <div>
                 <label for="inSearch">Search:</label>
                 <input type="text" id="inSearch">
-            </span>
-        </div>
+            </div>
+        </nav>
     </header>
-    <div class="container">
-        <table border="1.5">
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Phone Number</th>
-                <th>Salary</th>
-                <th id="actions">Actions</th>
-            </tr>
+
+    <main class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Phone Number</th>
+                    <th>Salary</th>
+                    <th id="actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Here the lines with employee data will be added -->
+            </tbody>
         </table>
-    </div>
+    </main>
+
     <div class="container-employee">
         <div class="modalHidden" id="divModal">
-
             <div class="header-form">
                 <img src="/img/close.png" id="btnCloseModal">
-                <h3></h3>
+                <h2>Form Employees</h2>
             </div>
-
             <div class="form">
                 <p>
                     <label for="inName">Name: </label>
-                    <input type="text" id="inName" required>
+                    <input type="text" id="inName" data-index="new" autofocus>
                 </p>
-
-                Position:
-                <select id="inPosition">
-                    <option selected disabled hidden>Choose...</option>
-                    <option value="Developer">Developer</option>
-                    <option value="Manager">Manager</option>
-                    <option value="UI-UX">UI-UX</option>
-                </select>
-
+                <p>
+                    Position:
+                    <select id="inPosition">
+                        <option selected disabled hidden>Choose...</option>
+                        <option value="Developer">Developer</option>
+                        <option value="Manager">Manager</option>
+                        <option value="UI-UX">UI-UX</option>
+                    </select>
+                </p>
                 <p>
                     <label for="inOffice">Office:</label>
                     <input type="text" id="inOffice">
                 </p>
-
                 <p>
                     <label for="inAge">Age:</label>
                     <input type="number" min="18" max="70" step="1" id="inAge" />
                 </p>
-
                 <p>
                     <label for="inStartDate">Start Date:</label>
                     <input type="date" id="inStartDate">
                 </p>
-
                 <p>
-                    <label for="inTelephone">Phone number: </label>
-                    <input type="text" id="inTelephone">
+                    <label for="inPhone">Phone number: </label>
+                    <input type="text" id="inPhone">
                 </p>
-
                 <p>
                     <label for="inSalary">Salary:</label>
                     <input type="text" id="inSalary">
                 </p>
-
-               
+                <button type="submit" id="btSave">Save</button>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

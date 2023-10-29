@@ -25,7 +25,7 @@
     max-width: 100%;
 }
 
-#btSubmit, #btUpdate {
+#btSave{
     color: #fff;
     border: none;
     cursor: pointer;
@@ -37,7 +37,7 @@
     background-color: #1a7dff;
 }
 
-#btSubmit:hover, #btUpdate:hover{
+#btSave:hover{
     background-color: #1164b1;
 }
 

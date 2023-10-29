@@ -1,18 +1,27 @@
 const getLocalStorage = () =>
-  JSON.parse(localStorage.getItem("dbClient")) ?? [];
-const setLocalStorage = (dbClient) =>
-  localStorage.setItem("dbClient", JSON.stringify(dbClient));
+  JSON.parse(localStorage.getItem("dbEmployee")) ?? [];
+const setLocalStorage = (dbEmployee) =>
+  localStorage.setItem("dbEmployee", JSON.stringify(dbEmployee));
 
 function createEmployee(employee) {
-  const dbClient = getLocalStorage();
-  dbClient.push(employee);
-  setLocalStorage(dbClient);
+  const dbEmployee = getLocalStorage();
+  dbEmployee.push(employee);
+
+  setLocalStorage(dbEmployee);
   toggleModal();
   readEmployee();
   clearFormFields();
 }
 
 function readEmployee() {
+  // Clear the old table for insert updates
+  let tr = document.querySelectorAll("tr");
+  if (tr.length > 1) {
+    for (let i = 1; i < tr.length; i++) {
+      tr[i].remove();
+    }
+  }
+
   const dbEmployee = getLocalStorage();
 
   dbEmployee.forEach((employee) => {
@@ -39,78 +48,64 @@ function readEmployee() {
 
 readEmployee();
 
-const btEdit = document.querySelectorAll(".btEdit");
-btEdit.forEach((bt, index) => {
-  bt.addEventListener("click", () => {
-    updateEmployee(index);
-  });
-});
-
-function updateEmployee(index) {
+function updateEmployee(employee, index) {
   const dbEmployee = getLocalStorage();
+  dbEmployee[index] = employee;
 
-  const employee = dbEmployee[index];
+  setLocalStorage(dbEmployee);
 
-  if (employee) {
-    document.querySelector("#inName").value = employee.name;
-    document.querySelector("#inPosition").value = employee.position;
-    document.querySelector("#inOffice").value = employee.office;
-    document.querySelector("#inAge").value = employee.age;
-    document.querySelector("#inStartDate").value = employee.startDate;
-    document.querySelector("#inTelephone").value = employee.phone;
-    document.querySelector("#inSalary").value = employee.salary;
-  }
-
-  let btSave = true;
-
-  toggleModal(btSave);
-
-  document.querySelector("#btUpdate").addEventListener("click", () => {
-    employee.name = document.querySelector("#inName").value;
-    employee.position = document.querySelector("#inPosition").value;
-    employee.office = document.querySelector("#inOffice").value;
-    employee.age = document.querySelector("#inAge").value;
-    employee.startDate = document.querySelector("#inStartDate").value;
-    employee.phone = document.querySelector("#inTelephone").value;
-    employee.salary = document.querySelector("#inSalary").value;
-
-    dbEmployee[index] = employee;
-    setLocalStorage(dbEmployee);
-  });
+  readEmployee();
 }
 
+const btEdit = document.querySelectorAll(".btEdit");
+
+btEdit.forEach((bt, index) => {
+  bt.addEventListener("click", () => edit(index));
+});
+
+const edit = (index) => {
+  const dbEmployee = getLocalStorage();
+  const employee = dbEmployee[index];
+
+  for (const key in employee) {
+    const inputField = document.querySelector(
+      `#in${key.charAt(0).toUpperCase() + key.slice(1)}`
+    );
+    if (inputField) {
+      inputField.value = employee[key];
+    }
+  }
+
+  if (index !== "new") {
+    document.querySelector("#inName").dataset.index = index;
+  }
+
+  toggleModal();
+};
+
 function deleteEmployee(index) {
-  let storedList = localStorage.getItem("dbClient");
-  let parsedList = storedList ? JSON.parse(storedList) : [];
+  const dbEmployee = getLocalStorage();
 
-  if (index >= 0 && index < parsedList.length) {
-    let employeeName = parsedList[index].name;
-
-    if (confirm(`Are you sure you want to delete ${employeeName}?`)) {
-      let table = document.querySelector("tbody");
-      let tr = document.querySelectorAll("tr")[index];
-      table.removeChild(tr);
-
-      parsedList.splice(index, 1);
-      localStorage.setItem("dbClient", JSON.stringify(parsedList));
+  if (index >= 0 && index < dbEmployee.length) {
+    if (confirm(`Are you sure you want to delete ${dbEmployee[index].name}?`)) {
+      dbEmployee.splice(index, 1);
+      setLocalStorage(dbEmployee);
+      readEmployee();
     }
   }
 }
 
-let btDelete = document.querySelectorAll(".btDelete");
+const btDelete = document.querySelectorAll(".btDelete");
 btDelete.forEach((bt, index) => {
   bt.addEventListener("click", () => deleteEmployee(index));
 });
 
 // Open and close modal
-const toggleModal = (btSave) => {
+const toggleModal = () => {
   const divModal = document.querySelector("#divModal");
   divModal.classList.toggle("modalOpen");
   divModal.classList.toggle("modalHidden");
 
-  if (divModal.classList.contains("modalOpen")) {
-    btnModalOpen(btSave);
-  }
   if (divModal.classList.contains("modalHidden")) {
     clearFormFields();
   }
@@ -122,34 +117,15 @@ btnCreate.addEventListener("click", toggleModal);
 const btnCloseModal = document.querySelector("#btnCloseModal");
 btnCloseModal.addEventListener("click", toggleModal);
 
-function btnModalOpen(btSave) {
-  const exixtingButton =
-    document.querySelector("#btSubmit") || document.querySelector("#btUpdate");
-  if (!exixtingButton) {
-    const button = document.createElement("button");
-    button.setAttribute("type", "submit");
-    button.textContent = "Add";
-
-    if (btSave) {
-      button.id = "btUpdate";
-    } else {
-      button.id = "btSubmit";
-    }
-
-    document.querySelector(".form").appendChild(button);
-
-    button.addEventListener("click", validateForm);
-  }
-}
-
 const validateForm = () => {
+  const index = document.querySelector("#inName").dataset.index;
   let employee = {
     name: document.querySelector("#inName").value,
     position: document.querySelector("#inPosition").value,
     office: document.querySelector("#inOffice").value,
     age: document.querySelector("#inAge").value,
     startDate: document.querySelector("#inStartDate").value,
-    phone: document.querySelector("#inTelephone").value,
+    phone: document.querySelector("#inPhone").value,
     salary: document.querySelector("#inSalary").value,
   };
 
@@ -159,8 +135,15 @@ const validateForm = () => {
       return;
     }
   }
-  createEmployee(employee);
+  if (index === "new") {
+    createEmployee(employee);
+  } else {
+    updateEmployee(employee, index);
+  }
 };
+
+const btSave = document.querySelector("#btSave");
+btSave.addEventListener("click", validateForm);
 
 function clearFormFields() {
   document.querySelector("#inName").value = "";
@@ -168,6 +151,6 @@ function clearFormFields() {
   document.querySelector("#inOffice").value = "";
   document.querySelector("#inAge").value = "";
   document.querySelector("#inStartDate").value = "";
-  document.querySelector("#inTelephone").value = "";
+  document.querySelector("#inPhone").value = "";
   document.querySelector("#inSalary").value = "";
 }
