@@ -154,3 +154,20 @@ function clearFormFields() {
   document.querySelector("#inPhone").value = "";
   document.querySelector("#inSalary").value = "";
 }
+
+const inSearch = document.querySelector("#inSearch");
+inSearch.addEventListener("focus", function () {
+  document.addEventListener("keydown", function (event) {
+    if (event.key == "Enter") {
+      searchEmployees(inSearch.value);
+    }
+  });
+});
+
+function searchEmployees(name) {
+  const dbEmployee = getLocalStorage();
+  const filteredEmps = dbEmployee.filter((emp) =>
+    emp.name.toLowerCase().includes(name.toLowerCase())
+  );
+  console.log(filteredEmps);
+}
