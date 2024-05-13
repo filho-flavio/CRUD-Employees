@@ -4,6 +4,8 @@
 
 Este projeto implementa um sistema CRUD (Criar, Ler, Atualizar e Excluir) para gerenciar usuários no LocalStorage. O sistema utiliza JavaScript, HTML e CSS para criar uma interface web intuitiva para interagir com os dados do banco de dados.
 
+![Screenshot from 2024-05-13 12-33-05](https://github.com/filho-flavio/CRUD-Employees/assets/113551879/13fde8dc-48d8-44ff-b60f-210d8d6e8e2d)
+
 **Tecnologias Utilizadas:**
 
 * **Front-end:**
